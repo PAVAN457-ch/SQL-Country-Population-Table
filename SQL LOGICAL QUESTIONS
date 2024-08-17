@@ -1,0 +1,51 @@
+SQL LOGICAL QUESTIONS 
+
+Create database test;
+
+create table country_pollution (
+    Country VARCHAR(100),
+    Temperature DECIMAL(5, 2),
+    CO2_Emissions DECIMAL(10, 2),
+    Date_Year INT
+)
+
+INSERT INTO country_pollution (Country, Temperature, CO2_Emissions, Date_Year) VALUES ('India', 45.5, 1200.05, 2019)
+INSERT INTO country_pollution (Country, Temperature, CO2_Emissions, Date_Year) VALUES ('Australia',19.5, 1500.30, 2020)
+INSERT INTO country_pollution (Country, Temperature, CO2_Emissions, Date_Year) VALUES ('USA', 30.8, 1300.76, 2019)
+INSERT INTO country_pollution (Country, Temperature, CO2_Emissions, Date_Year) VALUES ('UK', 12.5, 1800.80, 2020)
+
+ 
+1.	Question: Write a query to find the countries with the highest temperatures in the dataset? 
+A.	SELECT Country, Temperature
+    FROM country_pollution
+    WHERE Temperature = (SELECT MAX(Temperature) FROM country_pollution);
+2.	Question: Write a query to identify the countries with the lowest CO2 emissions in the dataset. 
+A.	SELECT Country, CO2_Emissions
+    FROM country_pollution
+    WHERE CO2_Emissions = (SELECT MIN(CO2_Emissions) FROM country_pollution);
+3.	Question: Write a query to find all temperature records above a specific value, for example, 20 degrees Celsius. 
+A.	SELECT * FROM country_pollution
+    WHERE Temperature < 20;
+4.	Question: Write a query to list all countries with CO2 emissions data available for the year 2020. 
+A.	SELECT Country, CO2_Emissions
+    FROM country_pollution
+    WHERE Date_Year = 2020;
+5.	Question: Write a query to count the total number of temperature records in the dataset. 
+A.	SELECT COUNT(Temperature) AS TotalTemperature
+    FROM country_pollution;
+6.	Question: Write a query to identify any countries with missing temperature data for a specific year, for example, 2015. 
+A.	SELECT DISTINCT Country
+    FROM country_pollution
+    WHERE Date_Year = 2019
+    AND Temperature IS NULL;
+7.	Question: Write a query to find the average temperature for each year in the dataset. 
+A.	SELECT Date_Year, AVG(Temperature) AS AverageTemperature
+    FROM country_pollution
+    GROUP BY Date_Year
+    ORDER BY Date_Year;
+8.	Question: Write a query to calculate the total CO2 emissions for all countries in the dataset. 
+A.	SELECT SUM(CO2_Emissions) AS TotalCO2Emissions
+    FROM country_pollution;
+9.	Question: Write a query to sort the temperature data in descending order based on the temperature values. 
+A.	SELECT * FROM country_pollution
+    ORDER BY Temperature DESC;
